@@ -1,4 +1,3 @@
-syntax on
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -6,3 +5,9 @@ set autoindent
 set softtabstop=4
 set autoindent
 set textwidth=78
+ au FileType python setlocal foldmethod=indent
+ syntax on
+ "Fortran設定
+ let fortran_free_source=1
+ let fortran_fold=1
+ au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1
