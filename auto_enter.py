@@ -4,6 +4,8 @@
 
 import pyautogui
 
+pyautogui.PAUSE = 0.001
+
 
 def load_txt(txt_path):
     with open(txt_path, "r") as read:
