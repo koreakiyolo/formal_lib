@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # !coding:utf-8
 
-
+import os
 import pyautogui
 
-pyautogui.PAUSE = 0.001
-
+pyautogui.PAUSE = 0.01
+FILE_DIR = os.path.dirname(__file__)
 
 def load_txt(txt_path):
     with open(txt_path, "r") as read:
@@ -33,7 +33,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     FILE_PATH = args.file_path
     if FILE_PATH is None:
-        raise AttributeError("program is stopped.")
+        fnm = "enter_input.txt"
+        FILE_PATH = os.path.join(FILE_DIR, fnm)
     BOOL_PENTER = args.press_enter
     txt_lines = load_txt(FILE_PATH)
     enter_info(txt_lines, BOOL_PENTER)
