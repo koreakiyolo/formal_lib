@@ -1,0 +1,76 @@
+if 0 | endif
+
+     if &compatible
+       set nocompatible               " Be iMproved
+     endif
+
+     " Required:
+     set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+     " Required:
+     call neobundle#begin(expand('~/.vim/bundle/'))
+
+     " Let NeoBundle manage NeoBundle
+     " Required:
+     NeoBundleFetch 'Shougo/neobundle.vim'
+
+     " My Bundles here:
+     NeoBundle 'https://github.com/Shougo/neocomplcache.git'
+     NeoBundle 'https://github.com/Shougo/unite.vim.git'
+     NeoBundle 'https://github.com/Shougo/vimshell.git'
+     NeoBundle 'https://github.com/Shougo/echodoc.git'
+     NeoBundle 'https://github.com/Shougo/neocomplcache.git'
+     NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
+     NeoBundle 'https://github.com/Shougo/vim-vcs.git'
+     NeoBundle 'https://github.com/Shougo/vimfiler.git'
+     NeoBundle 'https://github.com/Shougo/vimshell.git'
+     NeoBundle 'https://github.com/Shougo/vinarise.git'
+     NeoBundle 'davidhalter/jedi-vim'
+
+     call neobundle#end()
+
+     " Required:
+     filetype plugin indent on
+
+     " If there are uninstalled bundles found on startup,
+     " this will conveniently prompt you to install them.
+     NeoBundleCheck
+
+
+     NeoBundleLazy "davidhalter/jedi-vim", {
+         \ "autoload": { "filetypes": [ "python", "python3", "djangohtml"] }}
+
+     if ! empty(neobundle#get("jedi-vim"))
+        let g:jedi#auto_initialization = 1
+        let g:jedi#auto_vim_configuration = 1
+          nnoremap [jedi] <Nop>
+          xnoremap [jedi] <Nop>
+          nmap <Leader>j [jedi]
+          xmap <Leader>j [jedi]
+
+     let g:jedi#goto_assignments_command = "<C-g>"
+     let g:jedi#goto_definitions_command = "<C-d>"  
+         let g:jedi#documentation_command = "<C-k>"     
+    let g:jedi#rename_command = "[jedi]r"
+        let g:jedi#usages_command = "[jedi]n"
+        let g:jedi#popup_select_first = 0
+        let g:jedi#popup_on_dot = 0
+        
+        autocmd FileType python setlocal completeopt-=preview
+
+        if ! empty(neobundle#get("neocomplete.vim"))
+        autocmd FileType
+        python setlocal omnifunc=jedi#completions
+        let g:jedi#completions_enabled= 0
+        let g:jedi#auto_vim_configuration=0
+    endif
+ endif
+ set expandtab
+ set tabstop=4
+ set shiftwidth=4
+ set autoindent
+ set smartindent
+ set softtabstop=4
+ set autoindent
+ set smartindent
+ set textwidth=72
