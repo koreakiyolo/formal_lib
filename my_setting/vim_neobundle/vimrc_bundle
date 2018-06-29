@@ -1,5 +1,10 @@
-if 0 | endif
+" | 指定された path が $PATH に存在せず、ディレクトリとして存在している場合
+" | のみ $PATH に加える
 
+let $PATH = "~/.pyenv/shims:".$PATH
+
+"===============================================================================
+if 0 | endif
      if &compatible
        set nocompatible               " Be iMproved
      endif
@@ -13,7 +18,6 @@ if 0 | endif
      " Let NeoBundle manage NeoBundle
      " Required:
      NeoBundleFetch 'Shougo/neobundle.vim'
-
      " My Bundles here:
      NeoBundle 'https://github.com/Shougo/neocomplcache.git'
      NeoBundle 'https://github.com/Shougo/unite.vim.git'
@@ -26,6 +30,7 @@ if 0 | endif
      NeoBundle 'https://github.com/Shougo/vimshell.git'
      NeoBundle 'https://github.com/Shougo/vinarise.git'
      NeoBundle 'davidhalter/jedi-vim'
+     NeoBundle 'scrooloose/nerdtree'
 
      call neobundle#end()
 
@@ -37,8 +42,30 @@ if 0 | endif
      NeoBundleCheck
 
 
+     " DJANGO_SETTINGS_MODULE を自動設定
+     NeoBundleLazy "lambdalisue/vim-django-support", {
+          \ "autoload": {
+          \   "filetypes": ["python", "python3", "djangohtml"]
+          \ }}
+
+
      NeoBundleLazy "davidhalter/jedi-vim", {
          \ "autoload": { "filetypes": [ "python", "python3", "djangohtml"] }}
+     
+     " 補完用に jedi-vim を追加
+     NeoBundleLazy "davidhalter/jedi-vim", {
+           \ "autoload": {
+           \   "filetypes": ["python", "python3", "djangohtml"]
+           \ }}
+
+     " pyenv 処理用に vim-pyenv を追加
+     " Note: depends が指定されているため jedi-vim より後にロードされる
+     NeoBundleLazy "lambdalisue/vim-pyenv", {
+           \ "depends": ['davidhalter/jedi-vim'],
+           \ "autoload": {
+           \   "filetypes": ["python", "python3", "djangohtml"]
+           \ }}
+
 
      if ! empty(neobundle#get("jedi-vim"))
         let g:jedi#auto_initialization = 1
@@ -65,12 +92,30 @@ if 0 | endif
         let g:jedi#auto_vim_configuration=0
     endif
  endif
+ 
+ if jedi#init_python()
+   function! s:jedi_auto_force_py_version() abort
+     let major_version = pyenv#python#get_internal_major_version()
+     call jedi#force_py_version(major_version)
+   endfunction
+   augroup vim-pyenv-custom-augroup
+     autocmd! *
+     autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+     autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+   augroup END
+ endif
+ au FileType python setlocal foldmethod=indent
+ syntax on
  set expandtab
  set tabstop=4
  set shiftwidth=4
  set autoindent
- set smartindent
  set softtabstop=4
  set autoindent
- set smartindent
- set textwidth=72
+ set textwidth=78
+ "Fortran設定
+ let fortran_free_source=1
+ let fortran_fold=1
+ au! BufRead,BufNewFile *.f90 let b:fortran_do_enddo=1
+ nnoremap <silent><C-e> :NERDTreeToggle<CR>
+ filetype plugin indent on

@@ -132,9 +132,7 @@ alias mv='mv -i'
 alias ipython='ipython3'
 alias mkdir='mkdir -p'
 alias mount_data='sudo mount -t vboxsf data /home/haruyuki/data'
-alias mount_win='sudo mount -t vboxsf virtualbox_share_folder /home/haruyuki/share_ubuntu'
-alias unmount_vega="fusermouunt -u ${HOME}/vega"
-alias sshfs_vega='oda@10.232.39.245:/home/oda/ vega'
+alias mount_win='sudo mount -t vboxsf virtualbox_share_folder ${HOME}/share_ubuntu'
 alias task="source task"
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '

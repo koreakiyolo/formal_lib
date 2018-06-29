@@ -1,5 +1,0 @@
-HOGE
-a
-b
---temperature
-100
