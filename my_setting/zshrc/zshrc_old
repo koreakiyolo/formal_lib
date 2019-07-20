@@ -179,4 +179,3 @@ export EDITOR=/usr/bin/vim
 
 eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
-

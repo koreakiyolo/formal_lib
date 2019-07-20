@@ -6,9 +6,9 @@ import os
 from change_png_to_pdf import ConverterToPdf
 
 
-def print_global_varibales():
-    glva_dict = globals()
-    print_dict = {key: va for key, va in glva_dict
+def print_global_varibales(dict_ins):
+    glva_dict = dict_ins
+    print_dict = {key: va for key, va in glva_dict.items()
                   if key.isupper()}
     print("== global varibale is in the following. ==")
     print(print_dict)
@@ -53,5 +53,5 @@ if __name__ == "__main__":
         converter_ins.add_png_from_dir(
                                     PNG_DIR)
     else:
-        converter_ins.add_png(PNG_FILES)
+        converter_ins.add_png(*PNG_FILES)
     converter_ins.to_pdf(OUT_PDF)
