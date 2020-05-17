@@ -36,13 +36,12 @@ if __name__ == "__main__":
     ENV_DICT = os.environ.copy()
     with open(LIB_FILE, "r") as read:
         cmd_arg_list = [line.strip() for line in read]
-    stdout_io = open(STDOUT, "wb")
-    stderr_io = open(STDERR, "wb")
+    stdout_io = open(STDOUT, "w")
+    stderr_io = open(STDERR, "w")
     for cmd_arg in cmd_arg_list:
         cmd = PIP_BASE_CMD.format(cmd_arg)
         popen_ins = subprocess.Popen(cmd, shell=True,
                                      env=ENV_DICT,
-                                     stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE)
         stdout, stderr = popen_ins.communicate()
         if len(stderr) != 9:
