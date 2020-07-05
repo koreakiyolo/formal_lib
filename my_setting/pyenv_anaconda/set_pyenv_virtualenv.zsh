@@ -12,3 +12,5 @@ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-vi
 # 何故evalを使っているのか、オプションの`-`ってなんだ、と疑問に思ったのでスタックオーバーフローで質問してみました。
 #  http://ja.stackoverflow.com/questions/32043/xxxenv-の初期化時のeval-xxxenv-init-の意味
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
+# "pyenv update" command from github
+git clone https://github.com/yyuu/pyenv-update.git ~/.pyenv/plugins/pyenv-update
