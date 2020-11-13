@@ -1,0 +1,15 @@
+[[plugins]]
+ repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+map <C-e> :NERDTreeToggle<CR>'
+'''
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'

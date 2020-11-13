@@ -1,0 +1,31 @@
+[[plugins]]
+repo   = 'Shougo/unite.vim'
+
+# unite.vim を読み込んだら一緒に読み込む
+[[plugins]]
+repo      = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
+
+[[plugins]]
+repo = "davidhalter/jedi-vim"
+on_ft = ['python']
+hook_source = 'source /Users/haruyuki/.config/nvim/src_lazy_toml/jedi.vim'
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+on_i = 1
+hook_source = '''
+let g:deoplete#enable_at_startup = 1
+'''
+hook_post_source = '''
+let g:deoplete#omni_patterns = {}
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_i = 1
+on_ft = 'python'
