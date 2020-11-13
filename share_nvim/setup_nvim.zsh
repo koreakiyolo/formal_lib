@@ -4,7 +4,6 @@
 cwd=`dirname "${0}"`
 cd ${cwd}
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-mkdir ~/.cache
 sh ./install.sh ~/.config/nvim
 mkdir -p ~/.config/nvim
 echo 'XDG_BASE_HOME=${HOME}:./config' >> ~/.zshrc
