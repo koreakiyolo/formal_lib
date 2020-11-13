@@ -8,6 +8,6 @@ sh ./installer.sh ~/.config/nvim
 mkdir -p ~/.config/nvim
 echo 'XDG_BASE_HOME=${HOME}:./config' >> ~/.zshrc
 source ~/.zshrc
-sed -e "s@<HOME>@${HOME}@g" init.vim >> ~/.config/nvim/init.vim
+sed -e "s@<HOME>@${HOME}@g" init.vim > ~/.config/nvim/init.vim
 cp ./dein.toml ~/.config/nvim/
 cp ./dein_lazy.toml ~/.config/nvim/
