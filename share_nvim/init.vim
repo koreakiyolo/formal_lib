@@ -12,8 +12,8 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 
 " Required:
-if dein#load_state('/Users/haruyuki/.config/nvim/')
-  call dein#begin('/Users/haruyuki/.config/nvim')
+if dein#load_state(expand('$HOME/.config/nvim/'))
+  call dein#begin(expand('$HOME/.config/nvim'))
   let g:rc_dir = expand("~/.config/nvim/")
   let s:toml = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
@@ -25,7 +25,7 @@ if dein#load_state('/Users/haruyuki/.config/nvim/')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/haruyuki/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add(expand('$HOME/.config/dein/repos/github.com/Shougo/dein.vim'))
 
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
